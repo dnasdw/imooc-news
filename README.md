@@ -1,3 +1,9 @@
-# imooc-news
+# 初始化数据库
 
-uni-app 实战-前端全流程开发新闻资讯类应用
+我们需要在当前课程的 git 分支下，去找到 db_init.json 
+
+拷贝到 cloudfunctions 下面
+
+# 配置 tabbar 
+我们需要在当前课程的 git 分支下，去找到 static/图标.png
+
