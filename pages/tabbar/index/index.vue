@@ -2,7 +2,7 @@
 	<view class="content">
 		<!-- 自定义导航栏 -->
 		<navbar></navbar>
-		<tab></tab>
+		<tab :list="tabList"></tab>
 		<!-- <view v-for="item in 100">
 			{{item}} 内容那个
 		</view> -->
@@ -14,18 +14,28 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				title: 'Hello',
+				tabList: []
 			}
 		},
 		onLoad() {
-
+			this.getLabel()
 		},
 		methods: {
-
+			getLabel() {
+				// 调用云函数方法
+				uniCloud.callFunction({
+					name: 'get_label'
+				}).then((res)=>{
+					const {result}  = res
+					this.tabList = result.data
+					console.log(this.tabList);
+				})
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	
+
 </style>
