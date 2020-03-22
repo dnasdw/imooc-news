@@ -2,9 +2,10 @@
 	<view class="content">
 		<!-- 自定义导航栏 -->
 		<navbar></navbar>
-		<view v-for="item in 100">
+		<tab></tab>
+		<!-- <view v-for="item in 100">
 			{{item}} 内容那个
-		</view>
+		</view> -->
 	</view>
 </template>
 
