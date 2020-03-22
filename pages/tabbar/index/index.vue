@@ -1,11 +1,12 @@
 <template>
-	<view class="content">
+	<view class="home">
 		<!-- 自定义导航栏 -->
 		<navbar></navbar>
 		<tab :list="tabList"  @tab="tab"></tab>
-		<!-- <view v-for="item in 100">
-			{{item}} 内容那个
-		</view> -->
+		
+		<list-scroll>
+			<list-card v-for="item in 5"></list-card>
+		</list-scroll>
 	</view>
 </template>
 
@@ -43,5 +44,15 @@
 </script>
 
 <style lang="scss">
-
+	page {
+		height: 100%;
+		display: flex;
+	}
+	.home  {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		border: 1px red solid;
+		overflow: hidden;
+	}
 </style>
