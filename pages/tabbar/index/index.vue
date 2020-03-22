@@ -24,13 +24,16 @@
 		methods: {
 			getLabel() {
 				// 调用云函数方法
-				uniCloud.callFunction({
+				this.$api.get_label({
 					name: 'get_label'
-				}).then((res)=>{
-					const {result}  = res
-					this.tabList = result.data
-					console.log(this.tabList);
+				}).then((res) => {
+					const {
+						data
+					} = res
+					this.tabList = data
+					// 	console.log(this.tabList);
 				})
+
 			}
 		}
 	}
