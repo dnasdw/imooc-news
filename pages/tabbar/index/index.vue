@@ -3,12 +3,9 @@
 		<!-- 自定义导航栏 -->
 		<navbar></navbar>
 		<tab :list="tabList"  @tab="tab"></tab>
-		
-		<list-scroll>
-			<list-card mode="base"></list-card>
-			<list-card mode="image"></list-card>
-			<list-card mode="column"></list-card>
-		</list-scroll>
+		<view class="home-list">
+			<list :tab="tabList"></list>
+		</view>
 	</view>
 </template>
 
@@ -54,7 +51,11 @@
 		display: flex;
 		flex-direction: column;
 		flex: 1;
-		border: 1px red solid;
 		overflow: hidden;
+		.home-list {
+			flex:1;
+			box-sizing: border-box;
+			border: 1px red solid;
+		}
 	}
 </style>
