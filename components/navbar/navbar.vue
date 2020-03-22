@@ -6,7 +6,9 @@
 			<!-- 导航栏内容 -->
 			<view class="navbar-content" :style="{height:navBarHeight+'px',width:windowWidth+'px'}">
 				<view class="navbar-serach">
-					<view class="navbar-serach_icon"></view>
+					<view class="navbar-serach_icon">
+						<uni-icons type="search" size="16" color="#999"></uni-icons>
+					</view>
 					<view class="navbar-serach_text">uni-app、vue</view>
 				</view>
 			</view>
@@ -45,6 +47,7 @@
 </script>
 
 <style lang="scss">
+	@import  '../../common/css/icons.css';
 	.navbar {
 		.navbar-fixed {
 			position: fixed;
@@ -72,9 +75,8 @@
 					background-color: #fff;
 
 					.navbar-serach_icon {
-						width: 10px;
-						height: 10px;
-						border: 1px red solid;
+						// width: 10px;
+						// height: 10px;
 						margin-right: 10px;
 					}
 
