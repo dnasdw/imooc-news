@@ -13,3 +13,4 @@ export const get_list = (data) => {
 		data
 	})
 }
+

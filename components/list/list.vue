@@ -1,7 +1,7 @@
 <template>
 	<swiper class="home-swiper" :current="activeIndex" @change="change">
 		<swiper-item v-for="(item ,index) in tab" :key="index" class="swiper-item">
-			<list-item></list-item>
+			<list-item :list="list"></list-item>
 		</swiper-item>
 
 	</swiper>
@@ -27,8 +27,12 @@
 		},
 		data() {
 			return {
-
+				list: []
 			};
+		},
+		// onLoad 在页面 ，created 组件
+		created() {
+			this.getList()
 		},
 		methods: {
 			change(e) {
@@ -37,6 +41,13 @@
 				} = e.detail
 				// console.log(e);
 				this.$emit('change', current)
+			},
+			getList() {
+				this.$api.get_list().then(res => {
+					console.log(res);
+					const {data} = res
+					this.list = data
+				})
 			}
 		}
 	}
