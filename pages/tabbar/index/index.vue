@@ -2,9 +2,9 @@
 	<view class="home">
 		<!-- 自定义导航栏 -->
 		<navbar></navbar>
-		<tab :list="tabList"  @tab="tab"></tab>
+		<tab :list="tabList" :tabIndex="tabIndex"  @tab="tab"></tab>
 		<view class="home-list">
-			<list :tab="tabList"></list>
+			<list :tab="tabList" :activeIndex="activeIndex" @change="change"></list>
 		</view>
 	</view>
 </template>
@@ -15,15 +15,22 @@
 		data() {
 			return {
 				title: 'Hello',
-				tabList: []
+				tabList: [],
+				tabIndex:0,
+				activeIndex:0
 			}
 		},
 		onLoad() {
 			this.getLabel()
 		},
 		methods: {
+			change(current){
+				this.tabIndex = current
+				// console.log('当前swiper的值：',current);
+			},
 			tab({data,index}){
 				console.log(data,index);
+				this.activeIndex = index
 			},
 			getLabel() {
 				// 调用云函数方法
@@ -55,7 +62,6 @@
 		.home-list {
 			flex:1;
 			box-sizing: border-box;
-			border: 1px red solid;
 		}
 	}
 </style>
