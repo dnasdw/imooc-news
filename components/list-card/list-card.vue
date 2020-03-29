@@ -78,6 +78,7 @@
 		},
 		methods:{
 			open(){
+				this.$emit('click',this.item)
 				console.log('打开详情页面');
 			}
 		}
