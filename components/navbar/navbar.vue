@@ -6,7 +6,7 @@
 			<!-- 导航栏内容 -->
 			<view class="navbar-content" :class="{search:isSearch}" :style="{height:navBarHeight+'px',width:windowWidth+'px'}"
 			 @click.stop="open">
-				<view class="navbar-content__search-icons">
+				<view v-if="isSearch" class="navbar-content__search-icons" @click="back">
 					<uni-icons type="back" size="22" color="#fff"></uni-icons>
 				</view>
 				<view v-if="!isSearch" class="navbar-search">
@@ -69,6 +69,12 @@
 
 		},
 		methods: {
+			back(){
+				// uni.navigateBack()
+				uni.switchTab({
+					url:'/pages/tabbar/index/index'
+				})
+			},
 			open() {
 				if (this.isSearch) return
 				uni.navigateTo({
