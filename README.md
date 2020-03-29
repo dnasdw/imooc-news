@@ -1,4 +1,6 @@
-# 收藏按钮实现
-# 云函数  addFields 方法的使用
-# 聚合操作符的使用
-# 使用 uni API 如 uni.showLoadinng() 、uni.ShowToast()
+# 搜索页导航栏修改
+
+1. navbar 组件注意不同页面的调用 
+2. 注意 open 事件，是否会刷新页面
+3. 布局使用 flex 布局
+4. 首页不需要显示 back 箭头，只有在搜索页才会需要
