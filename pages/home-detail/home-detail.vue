@@ -19,7 +19,9 @@
 			</view>
 		</view>
 		<view class="detail-content">
-			详情数据
+			<view class="detail-html">
+				{{formData.content}}
+			</view>
 		</view>
 		<view class="detail-bottom">
 			<view class="detail-bottom__input">
@@ -45,14 +47,24 @@
 	export default {
 		data() {
 			return {
-				formData:{}
+				formData: {}
 			}
 		},
 		onLoad(query) {
 			this.formData = JSON.parse(query.params)
+			this.getDetail()
 		},
 		methods: {
-			
+			// 获取详情信息
+			getDetail() {
+				this.$api.get_detail({
+					article_id: this.formData._id
+				}).then((res) => {
+					const {data} = res
+					this.formData = data
+					console.log(res);
+				})
+			}
 		}
 	}
 </script>
@@ -62,28 +74,33 @@
 		padding: 15px 0;
 		padding-bottom: 54px;
 	}
+
 	.detail-title {
 		padding: 0 15px;
 		font-size: 18px;
 		font-weight: bold;
 		color: #333;
 	}
+
 	.detail-header {
 		display: flex;
 		align-items: center;
 		margin-top: 10px;
 		padding: 0 15px;
+
 		.detail-header__logo {
 			flex-shrink: 0;
 			width: 40px;
 			height: 40px;
 			border-radius: 50%;
 			overflow: hidden;
+
 			image {
 				width: 100%;
 				height: 100%;
 			}
 		}
+
 		.detail-header__content {
 			width: 100%;
 			padding-left: 10px;
@@ -91,22 +108,30 @@
 			flex-direction: column;
 			justify-content: space-between;
 			font-size: 12px;
+
 			.detail-header__content-title {
 				font-size: 14px;
 				color: #333;
 			}
+
 			.detail-header__content-info {
 				color: #999;
+
 				text {
 					margin-right: 10px;
 				}
 			}
 		}
 	}
+
 	.detail-content {
-		height: 1000px;
-		border: 1px red solid;
+		margin-top: 20px;
+		min-height: 500px;
+		.detail-html {
+			padding:0 15px;
+		}
 	}
+
 	.detail-bottom {
 		position: fixed;
 		bottom: 0;
@@ -118,6 +143,7 @@
 		border-top: 1px #f5f5f5 solid;
 		background-color: #fff;
 		box-sizing: border-box;
+
 		.detail-bottom__input {
 			display: flex;
 			justify-content: space-between;
@@ -128,15 +154,18 @@
 			height: 30px;
 			border: 1px #ddd solid;
 			border-radius: 5px;
+
 			text {
 				font-size: 14px;
 				color: #999;
 			}
 		}
+
 		.detail-bottom__icons {
 			display: flex;
 			flex-shrink: 0;
 			padding: 0 10px;
+
 			.detail-bottom__icons-box {
 				position: relative;
 				display: flex;
