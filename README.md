@@ -1,5 +1,3 @@
-# 详情页面数据初始化
-1. 通过 addFields 去添加 三个字段，分别表示是否关注作者、是否收藏文章、是否给文章点赞
-2. 通过 projcet 筛选掉不需要的字段返回
-3. 通过 match 筛选指定记录
-4. 使用请求后的数据，替换 onload 中赋值的数据，确保内容为最新 
+# 富文本渲染
+1. 使用 uParse 组件去解析渲染富文本 [参考](https://ext.dcloud.net.cn/plugin?id=364)
+2. 可以课下了解 rich-text 组件 [参考](https://uniapp.dcloud.io/component/rich-text)
