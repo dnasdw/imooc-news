@@ -25,8 +25,8 @@
 			</view>
 			<view class="detail-comment">
 				<view class="comment-title">最新评论</view>
-				<view class="comment-content">
-					<comments-box></comments-box>
+				<view class="comment-content" v-for="item in commentsList" :key="item.comment_id">
+					<comments-box :comments="item"></comments-box>
 				</view>
 			</view>
 		</view>
@@ -51,7 +51,7 @@
 			<view class="popup-wrap">
 				<view class="popup-header">
 					<text class="popup-header__item" @click="close">取消 </text>
-					<text  class="popup-header__item" @click="submit">发布 </text>
+					<text class="popup-header__item" @click="submit">发布 </text>
 				</view>
 				<view class="popup-content">
 					<textarea class="popup-textarea" v-model="commentsValue" maxlength="200" fixed placeholder="请输入评论内容" />
@@ -73,14 +73,14 @@
 				formData: {},
 				noData:'<p style="text-align:center;color:#666">详情加载中...</p>',
 				// 输入框的值
-				commentsValue:''
+				commentsValue:'',
+				commentsList:[]
 			}
 		},
 		onLoad(query) {
 			this.formData = JSON.parse(query.params)
 			this.getDetail()
-		},
-		onReady() {
+			this.getComments()
 		},
 		methods: {
 			// 打开评论发布窗口
@@ -126,6 +126,16 @@
 					const {data} = res
 					this.formData = data
 					console.log(res);
+				})
+			},
+			// 请求评论内容
+			getComments(){
+				this.$api.get_comments({
+					article_id: this.formData._id
+				}).then(res=>{
+					console.log(res);
+					const {data} = res
+					this.commentsList = data
 				})
 			}
 		}
