@@ -24,6 +24,7 @@
 <script>
 	import commentsBox from '@/components/comments-box/comments-box.vue'
 	export default {
+		name:"comments-box",
 		components:{
 			commentsBox
 		},

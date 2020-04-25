@@ -109,15 +109,14 @@
 				this.replyFormData = {
 					"comment_id":e.comment_id
 				}
-				this.openComment()
+				this.openComment()  
 			},
 			setUpdateComment(content){
 				const formdata ={
 					article_id:this.formData._id,
 					...content
 				}
-				console.log(formdata);
-				return
+				// console.log(formdata);
 				uni.showLoading()
 				this.$api.update_comment(formdata).then((res)=>{
 					console.log(res);
@@ -125,6 +124,7 @@
 					uni.showToast({
 						title:'评论发布成功'
 					})
+					this.getComments()
 					this.close()
 				})
 			},
