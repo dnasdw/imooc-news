@@ -107,9 +107,14 @@
 			},
 			reply(e){
 				this.replyFormData = {
-					"comment_id":e.comment_id
+					"comment_id":e.comments.comment_id,
+					"is_reply": e.is_reply
 				}
-				this.openComment()  
+				if(e.comments.reply_id){
+					this.replyFormData.reply_id = e.comments.reply_id
+				}
+				console.log(this.replyFormData);
+				this.openComment()
 			},
 			setUpdateComment(content){
 				const formdata ={
@@ -126,6 +131,8 @@
 					})
 					this.getComments()
 					this.close()
+					this.replyFormData = {}
+					this.commentsValue = ''
 				})
 			},
 			// 获取详情信息
