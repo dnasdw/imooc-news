@@ -22,6 +22,11 @@ exports.main = async (event, context) => {
 	await db.collection('user').doc(user_id).update({
 		thumbs_up_article_ids: thumbs_ids
 	})
+	
+	await db.collection('article').doc(article_id).update({
+		// inc 原子操作 ，减少一次请求
+		thumbs_up_count:dbCmd.inc(1)
+	})
 
 	//返回数据给客户端
 	return {
