@@ -37,7 +37,7 @@
 				<uni-icons type="compose" size="16" color="#F07373"></uni-icons>
 			</view>
 			<view class="detail-bottom__icons">
-				<view class="detail-bottom__icons-box">
+				<view class="detail-bottom__icons-box" @click="open">
 					<uni-icons type="chat" size="22" color="#F07373"></uni-icons>
 				</view>
 				<view class="detail-bottom__icons-box" @click="likeTap(formData._id)">
@@ -85,6 +85,14 @@
 			this.getComments()
 		},
 		methods: {
+			/**
+			 * 打开评论列表
+			 */
+			open(){
+				uni.navigateTo({
+					url:'../detail-comments/detail-comments?id='+this.formData._id
+				})
+			},
 			// 点赞
 			thumbsup(article_id){
 				this.setUpdateThumbs(article_id)
