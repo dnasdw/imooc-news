@@ -7,6 +7,18 @@
 				<view class="follow-tab__item" :class="{active:activeIndex === 1}" @click="tab(1)">作者</view>
 			</view>
 		</view>
+		<view class="follow-list">
+			<swiper class="follow-list__swiper">
+				<swiper-item>
+					<list-scroll>
+						<list-card v-for="item in list" :key="item._id" :item="item"></list-card>
+					</list-scroll>
+				</swiper-item>
+				<swiper-item>
+					<view class="swiper-item">作者</view>
+				</swiper-item>
+			</swiper>
+		</view>
 	</view>
 </template>
 
@@ -14,12 +26,25 @@
 	export default {
 		data() {
 			return {
-				activeIndex: 0
+				activeIndex: 0,
+				list: []
 			}
+		},
+		onLoad() {
+			this.getFollow()
 		},
 		methods: {
 			tab(index) {
 				this.activeIndex = index
+			},
+			getFollow() {
+				this.$api.get_follow().then(res => {
+					console.log(res);
+					const {
+						data
+					} = res
+					this.list = data
+				})
 			}
 		}
 	}
@@ -66,6 +91,16 @@
 						color: $mk-base-color;
 					}
 
+				}
+			}
+		}
+
+		.follow-list {
+			flex: 1;
+			.follow-list__swiper {
+				height: 100%;
+				.swiper-item {
+					height: 100%;
 				}
 			}
 		}
