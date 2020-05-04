@@ -11,7 +11,9 @@
 			<swiper class="follow-list__swiper">
 				<swiper-item>
 					<list-scroll>
-						<list-card v-for="item in list" :key="item._id" :item="item"></list-card>
+						<uni-load-more v-if="list.length === 0 && !articleShow" iconType="snow" status="loading"></uni-load-more>
+						<list-card  v-for="item in list" :key="item._id" types="follow" :item="item"></list-card>
+						<view class="no-data" v-if="articleShow">没有数据</view>
 					</list-scroll>
 				</swiper-item>
 				<swiper-item>
@@ -27,10 +29,16 @@
 		data() {
 			return {
 				activeIndex: 0,
-				list: []
+				list: [],
+				articleShow: false
 			}
 		},
 		onLoad() {
+			// 自定义事件，$on 只能 在打开的页面触发
+			uni.$on('update_article',()=>{
+				console.log('关注页面触发');
+				this.getFollow()
+			})
 			this.getFollow()
 		},
 		methods: {
@@ -44,6 +52,7 @@
 						data
 					} = res
 					this.list = data
+					this.articleShow = this.list.length === 0 ? true : false
 				})
 			}
 		}
@@ -97,12 +106,20 @@
 
 		.follow-list {
 			flex: 1;
+
 			.follow-list__swiper {
 				height: 100%;
+
 				.swiper-item {
 					height: 100%;
 				}
 			}
 		}
+	}
+	.no-data {
+		padding: 50px;
+		font-size: 14px;
+		color: #999;
+		text-align: center;
 	}
 </style>

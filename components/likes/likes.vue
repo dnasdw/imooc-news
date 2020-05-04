@@ -12,6 +12,10 @@
 				default () {
 					return {}
 				}
+			},
+			types: {
+				type: String,
+				default: ''
 			}
 		},
 		data() {
@@ -41,12 +45,13 @@
 				}).then(res => {
 					uni.hideLoading()
 					uni.showToast({
-						title:this.like?'收藏成功':'取消收藏',
-						icon:'none'
+						title: this.like ? '收藏成功' : '取消收藏',
+						icon: 'none'
 					})
+					uni.$emit('update_article',this.types)
 					console.log(res);
-					
-				}).catch(()=>{
+
+				}).catch(() => {
 					uni.hideLoading()
 				})
 			}
