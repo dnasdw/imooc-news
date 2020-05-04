@@ -8,16 +8,18 @@
 			</view>
 		</view>
 		<view class="follow-list">
-			<swiper class="follow-list__swiper">
+			<swiper class="follow-list__swiper" :current="activeIndex" @change="change">
 				<swiper-item>
 					<list-scroll>
 						<uni-load-more v-if="list.length === 0 && !articleShow" iconType="snow" status="loading"></uni-load-more>
-						<list-card  v-for="item in list" :key="item._id" types="follow" :item="item"></list-card>
+						<list-card v-for="item in list" :key="item._id" types="follow" :item="item"></list-card>
 						<view class="no-data" v-if="articleShow">没有数据</view>
 					</list-scroll>
 				</swiper-item>
-				<swiper-item>
-					<view class="swiper-item">作者</view>
+				<swiper-item class="swiper-item">
+					<list-scroll>
+						<list-author></list-author>
+					</list-scroll>
 				</swiper-item>
 			</swiper>
 		</view>
@@ -28,20 +30,23 @@
 	export default {
 		data() {
 			return {
-				activeIndex: 0,
+				activeIndex: 1,
 				list: [],
 				articleShow: false
 			}
 		},
 		onLoad() {
 			// 自定义事件，$on 只能 在打开的页面触发
-			uni.$on('update_article',()=>{
+			uni.$on('update_article', () => {
 				console.log('关注页面触发');
 				this.getFollow()
 			})
 			this.getFollow()
 		},
 		methods: {
+			change(e){
+				this.activeIndex = e.detail.current
+			},
 			tab(index) {
 				this.activeIndex = index
 			},
@@ -116,6 +121,7 @@
 			}
 		}
 	}
+
 	.no-data {
 		padding: 50px;
 		font-size: 14px;
