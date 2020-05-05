@@ -6,7 +6,7 @@
 			this.$api.get_user({
 				user_id: '5e76254858d922004d6c9cdc'
 			}).then((res) => {
-				console.log(res);
+				// console.log(res);
 				const {
 					data
 				} = res
