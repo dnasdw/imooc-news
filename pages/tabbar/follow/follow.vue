@@ -18,7 +18,7 @@
 				</swiper-item>
 				<swiper-item class="swiper-item">
 					<list-scroll>
-						<list-author></list-author>
+						<list-author v-for="item in  authorLists" :key="item.id" :item="item"></list-author>
 					</list-scroll>
 				</swiper-item>
 			</swiper>
@@ -30,8 +30,9 @@
 	export default {
 		data() {
 			return {
-				activeIndex: 1,
+				activeIndex: 0,
 				list: [],
+				authorLists: [],
 				articleShow: false
 			}
 		},
@@ -41,10 +42,14 @@
 				console.log('关注页面触发');
 				this.getFollow()
 			})
+			uni.$on('update_author', () => {
+				this.getAuhtor()
+			})
 			this.getFollow()
+			this.getAuhtor()
 		},
 		methods: {
-			change(e){
+			change(e) {
 				this.activeIndex = e.detail.current
 			},
 			tab(index) {
@@ -58,6 +63,15 @@
 					} = res
 					this.list = data
 					this.articleShow = this.list.length === 0 ? true : false
+				})
+			},
+			getAuhtor() {
+				this.$api.get_author().then(res => {
+					console.log(res);
+					const {
+						data
+					} = res
+					this.authorLists = data
 				})
 			}
 		}
