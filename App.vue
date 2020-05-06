@@ -2,6 +2,16 @@
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
+			// 5e76254858d922004d6c9cdc
+			this.$api.get_user({
+				user_id: '5e76254858d922004d6c9cdc'
+			}).then((res) => {
+				// console.log(res);
+				const {
+					data
+				} = res
+				this.$store.dispatch('set_userinfo', data)
+			})
 		},
 		onShow: function() {
 			console.log('App Show')

@@ -7,6 +7,25 @@
 				<view class="follow-tab__item" :class="{active:activeIndex === 1}" @click="tab(1)">作者</view>
 			</view>
 		</view>
+<<<<<<< HEAD
+=======
+		<view class="follow-list">
+			<swiper class="follow-list__swiper" :current="activeIndex" @change="change">
+				<swiper-item>
+					<list-scroll>
+						<uni-load-more v-if="list.length === 0 && !articleShow" iconType="snow" status="loading"></uni-load-more>
+						<list-card v-for="item in list" :key="item._id" types="follow" :item="item"></list-card>
+						<view class="no-data" v-if="articleShow">没有数据</view>
+					</list-scroll>
+				</swiper-item>
+				<swiper-item class="swiper-item">
+					<list-scroll>
+						<list-author v-for="item in  authorLists" :key="item.id" :item="item"></list-author>
+					</list-scroll>
+				</swiper-item>
+			</swiper>
+		</view>
+>>>>>>> lesson-10-6
 	</view>
 </template>
 
@@ -14,12 +33,58 @@
 	export default {
 		data() {
 			return {
+<<<<<<< HEAD
 				activeIndex: 0
 			}
 		},
 		methods: {
 			tab(index) {
 				this.activeIndex = index
+=======
+				activeIndex: 0,
+				list: [],
+				authorLists: [],
+				articleShow: false
+			}
+		},
+		onLoad() {
+			// 自定义事件，$on 只能 在打开的页面触发
+			uni.$on('update_article', () => {
+				console.log('关注页面触发');
+				this.getFollow()
+			})
+			uni.$on('update_author', () => {
+				this.getAuhtor()
+			})
+			this.getFollow()
+			this.getAuhtor()
+		},
+		methods: {
+			change(e) {
+				this.activeIndex = e.detail.current
+			},
+			tab(index) {
+				this.activeIndex = index
+			},
+			getFollow() {
+				this.$api.get_follow().then(res => {
+					console.log(res);
+					const {
+						data
+					} = res
+					this.list = data
+					this.articleShow = this.list.length === 0 ? true : false
+				})
+			},
+			getAuhtor() {
+				this.$api.get_author().then(res => {
+					console.log(res);
+					const {
+						data
+					} = res
+					this.authorLists = data
+				})
+>>>>>>> lesson-10-6
 			}
 		}
 	}
@@ -69,5 +134,27 @@
 				}
 			}
 		}
+<<<<<<< HEAD
+=======
+
+		.follow-list {
+			flex: 1;
+
+			.follow-list__swiper {
+				height: 100%;
+
+				.swiper-item {
+					height: 100%;
+				}
+			}
+		}
+	}
+
+	.no-data {
+		padding: 50px;
+		font-size: 14px;
+		color: #999;
+		text-align: center;
+>>>>>>> lesson-10-6
 	}
 </style>
