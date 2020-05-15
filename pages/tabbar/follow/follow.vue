@@ -7,8 +7,6 @@
 				<view class="follow-tab__item" :class="{active:activeIndex === 1}" @click="tab(1)">作者</view>
 			</view>
 		</view>
-<<<<<<< HEAD
-=======
 		<view class="follow-list">
 			<swiper class="follow-list__swiper" :current="activeIndex" @change="change">
 				<swiper-item>
@@ -26,7 +24,6 @@
 				</swiper-item>
 			</swiper>
 		</view>
->>>>>>> lesson-10-6
 	</view>
 </template>
 
@@ -34,14 +31,6 @@
 	export default {
 		data() {
 			return {
-<<<<<<< HEAD
-				activeIndex: 0
-			}
-		},
-		methods: {
-			tab(index) {
-				this.activeIndex = index
-=======
 				activeIndex: 0,
 				list: [],
 				authorLists: [],
@@ -87,7 +76,6 @@
 					this.authorLists = data
 					this.followShow = this.authorLists.length === 0 ? true : false
 				})
->>>>>>> lesson-10-6
 			}
 		}
 	}
@@ -137,9 +125,6 @@
 				}
 			}
 		}
-<<<<<<< HEAD
-=======
-
 		.follow-list {
 			flex: 1;
 
@@ -158,6 +143,5 @@
 		font-size: 14px;
 		color: #999;
 		text-align: center;
->>>>>>> lesson-10-6
 	}
 </style>
