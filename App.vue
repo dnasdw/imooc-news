@@ -3,6 +3,7 @@
 		onLaunch: function() {
 			console.log('App Launch')
 			// 5e76254858d922004d6c9cdc
+			// 请求接口，异步
 			this.$api.get_user({
 				user_id: '5e76254858d922004d6c9cdc'
 			}).then((res) => {
