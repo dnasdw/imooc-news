@@ -15,6 +15,7 @@ master 主分支为项目的完整代码。可以直接克隆到本地，配置�
 1. 参考 uniCloud 章节配置相关环境
 2. 将 manifest.json 中 appid 替换成自己的，点击重新获取
 3. 在 cloudFunctions 右键上传所有云函数
-4. 运行到指定平台，查看效果
+4. app.vue 中修改 user_id 为 第一步 db_init.json 后， user 表中的任意的用户 _id ，请求正确的用户信息 
+5. 运行到指定平台，查看效果
  
 
